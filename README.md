@@ -19,7 +19,7 @@ From this example we can derive some important data.
 ```
 type Input a = a
 type Expectation a = a
-data Test a b = Subject String (a -> b) | Test String (a -> b) a b | Tests String (a -> b)
+data Test a b = Test String (a -> b) a b | Tests String (a -> b)
 ```
 
 This means that we can define a test subject (A function with a appended string description) or,
@@ -44,8 +44,27 @@ tests = do
     checkP (subject1 exData2 expectation2)
 ```
 
-To make it even easier, we can create a funcion checkP that compose our check
+To make it even easier, we can created a funcion checkP that compose our check
 and the print functions, making it easier to use at IO blocks.
 
 
 
+# TODO
+- [ ] - Change ```check`` check function output String.
+
+       For a test where the input or output is a Boolean, the string is somewhat confusing:
+         - Ex:  Solution |> For the input [10,2,5,1,8,20] should output True -> True
+
+       Suggestions for making the message better are a) using another word for the output, or b)
+       changing the phrase for something more interesting.
+
+         a) Solution |> For the input [10,2,5,1,8,20] should output True -> OK
+         b Solution |> For the input [10,2,5,1,8,20] should output True; holds True
+
+       Math has interesing syntax for proofs that could be a good inspiration.
+
+
+# Notes
+- [27/03/2017]
+  - Is ```check``` an interesting name? Should i use ```eval```?
+  - The library works clean only for functions that receive its data as it's last input. Other than that, the developer should use a wrapping function.
