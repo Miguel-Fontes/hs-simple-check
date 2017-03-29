@@ -52,19 +52,30 @@ and the print functions, making it easier to use at IO blocks.
 # TODO
 - [ ] - Change ```check`` check function output String.
 
-       For a test where the input or output is a Boolean, the string is somewhat confusing:
-         - Ex:  Solution |> For the input [10,2,5,1,8,20] should output True -> True
+        For a test where the input or output is a Boolean, the string is somewhat confusing:
+          - Ex:  Solution |> For the input [10,2,5,1,8,20] should output True -> True
 
-       Suggestions for making the message better are a) using another word for the output, or b)
-       changing the phrase for something more interesting.
+        Suggestions for making the message better are a) using another word for the output, or b)
+        changing the phrase for something more interesting.
 
-         a) Solution |> For the input [10,2,5,1,8,20] should output True -> OK
-         b Solution |> For the input [10,2,5,1,8,20] should output True; holds True
+          a) Solution |> For the input [10,2,5,1,8,20], should output True |> OK
+          b) Solution |> For the input [10,2,5,1,8,20] should output True; holds True
 
-       Math has interesing syntax for proofs that could be a good inspiration.
+        Math has interesing syntax for proofs that could be a good inspiration.
+
+- [ ] - Add an option to use create a Test using a list [(Input, Expectation)]. This will make the code more readable.
+
+        tests = do
+            checkP (Test "Solution" solution' [(testData1, testExpectation1)
+                                              ,(testData2, testExpectation2)
+                                              ,(testData3, testExpectation3)
+                                              ,(testData4, testExpectation4)]
 
 
 # Notes
 - [27/03/2017]
   - Is ```check``` an interesting name? Should i use ```eval```?
   - The library works clean only for functions that receive its data as it's last input. Other than that, the developer should use a wrapping function.
+  - Should i add some form of test grouping? This feature will add the ability to output some nice looking texts but, maybe, at the cost of higher complexity.
+  - The language 'coq' has a interesting dialect to represent mathematical proofs.
+  - Grouped tests only works if the inputs and outputs are of the same type. As a way to group several types, the user could define a function that executes the tests and return a same type, like IO(). Feasible?
